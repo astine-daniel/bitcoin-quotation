@@ -2,6 +2,8 @@ import XCTest
 
 final class BitcoinQuotationUITests: XCTestCase {
     override func setUp() {
+        super.setUp()
+
         continueAfterFailure = false
     }
 
