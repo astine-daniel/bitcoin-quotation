@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A45A6EFCDCEB1DE8AB85266 /* libPods-BitcoinQuotationUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D4701F11B715C689F1E77E /* libPods-BitcoinQuotationUITests.a */; };
 		1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */; };
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
+		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
 		D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746C2336C3F2000332BF /* AppDelegate.swift */; };
 		D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746E2336C3F2000332BF /* SceneDelegate.swift */; };
 		D2C374712336C3F2000332BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C374702336C3F2000332BF /* ContentView.swift */; };
@@ -69,6 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */,
+				D223FA982337155F001C225A /* Common in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +197,9 @@
 			dependencies = (
 			);
 			name = BitcoinQuotation;
+			packageProductDependencies = (
+				D223FA972337155F001C225A /* Common */,
+			);
 			productName = BitcoinQuotation;
 			productReference = D2C374692336C3F2000332BF /* BitcoinQuotation.app */;
 			productType = "com.apple.product-type.application";
@@ -368,7 +373,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, install using cocoapods - 'bundle exec pod install'\"\nfi\n";
+			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml ../Common\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, install using cocoapods - 'bundle exec pod install'\"\nfi\n";
 		};
 		DF461DCA54F550E1FC8F2B4D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -725,6 +730,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D223FA972337155F001C225A /* Common */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Common;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2C374612336C3F2000332BF /* Project object */;
 }
