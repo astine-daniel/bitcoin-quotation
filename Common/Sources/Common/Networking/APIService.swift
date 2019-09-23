@@ -2,7 +2,7 @@ import Combine
 import Dispatch
 import Foundation
 
-struct APIService {
+public struct APIService {
     // MARK: Type alias
     typealias Completion<T> = (Result<T, Error>) -> Void
 
@@ -11,8 +11,8 @@ struct APIService {
     private let queue: DispatchQueue?
 
     // MARK: - Initialization
-    init(session: URLSessionProtocol = URLSession.shared,
-         queue: DispatchQueue? = nil) {
+    public init(session: URLSessionProtocol = URLSession.shared,
+                queue: DispatchQueue? = nil) {
         self.session = session
         self.queue = queue
     }

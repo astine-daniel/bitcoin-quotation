@@ -1,19 +1,19 @@
 import Common
 import Foundation
 
-public struct APIServiceInfo { }
+struct APIServiceInfo { }
 
-public extension APIServiceInfo {
+extension APIServiceInfo {
     static var `default`: APIServiceInfo { APIServiceInfo() }
 }
 
 extension APIServiceInfo: APIServiceInfoProtocol {
-    public var baseURL: URLConvertible { " https://api.blockchain.info" }
-    public var format: String { "json" }
+    var baseURL: URLConvertible { "https://api.blockchain.info" }
+    var resultFormat: String { "json" }
 }
 
-public extension URLQueryItem {
-    static func format(value: String) -> URLQueryItem {
+extension URLQueryItem {
+    static func resultFormat(value: String) -> URLQueryItem {
         return URLQueryItem(name: "format", value: value)
     }
 }
