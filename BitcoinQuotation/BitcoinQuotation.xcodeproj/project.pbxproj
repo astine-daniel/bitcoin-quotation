@@ -11,6 +11,7 @@
 		1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */; };
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
 		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
+		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
 		D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746C2336C3F2000332BF /* AppDelegate.swift */; };
 		D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746E2336C3F2000332BF /* SceneDelegate.swift */; };
 		D2C374712336C3F2000332BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C374702336C3F2000332BF /* ContentView.swift */; };
@@ -71,6 +72,7 @@
 			files = (
 				1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */,
 				D223FA982337155F001C225A /* Common in Frameworks */,
+				D2AE2E6D233846440016AFD8 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +201,7 @@
 			name = BitcoinQuotation;
 			packageProductDependencies = (
 				D223FA972337155F001C225A /* Common */,
+				D2AE2E6C233846440016AFD8 /* Core */,
 			);
 			productName = BitcoinQuotation;
 			productReference = D2C374692336C3F2000332BF /* BitcoinQuotation.app */;
@@ -373,7 +376,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml ../Common\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, install using cocoapods - 'bundle exec pod install'\"\nfi\n";
+			shellScript = "if which ${PODS_ROOT}/SwiftLint/swiftlint >/dev/null; then\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml ../Common\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml ../Core\n  ${PODS_ROOT}/SwiftLint/swiftlint lint --config ../.swiftlint.yml\nelse\n  echo \"warning: SwiftLint not installed, install using cocoapods - 'bundle exec pod install'\"\nfi\n";
 		};
 		DF461DCA54F550E1FC8F2B4D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -491,6 +494,7 @@
 				"DEBUG_INFORMATION_FORMAT[sdk=iphonesimulator*]" = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENVIRONMENT = Production;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -553,6 +557,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENVIRONMENT = Production;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -735,6 +740,10 @@
 		D223FA972337155F001C225A /* Common */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Common;
+		};
+		D2AE2E6C233846440016AFD8 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

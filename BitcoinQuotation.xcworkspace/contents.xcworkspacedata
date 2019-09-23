@@ -5,6 +5,9 @@
       location = "group:Common">
    </FileRef>
    <FileRef
+      location = "group:Core">
+   </FileRef>
+   <FileRef
       location = "group:BitcoinQuotation/BitcoinQuotation.xcodeproj">
    </FileRef>
    <FileRef
