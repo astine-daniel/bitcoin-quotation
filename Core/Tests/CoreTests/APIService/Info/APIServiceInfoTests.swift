@@ -17,4 +17,13 @@ final class APIServiceInfoTests: XCTestCase {
         XCTAssertNoThrow(baseURL = try target.baseURL.asURL())
         XCTAssertNotNil(baseURL)
     }
+
+    func testBaseURL() throws {
+        let baseURL = try XCTUnwrap(target.baseURL.asURL())
+        XCTAssertEqual(baseURL.absoluteString, "https://api.blockchain.info")
+    }
+
+    func testResultFormatShouldBeJSONFormat() {
+        XCTAssertEqual(target.resultFormat, "json")
+    }
 }
