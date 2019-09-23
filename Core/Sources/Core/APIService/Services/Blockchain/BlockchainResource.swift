@@ -1,7 +1,7 @@
 import Common
 import Foundation
 
-struct MarketPriceResource {
+struct BlockchainResource {
     // MARK: - Initialization
     private init(baseURL: URLConvertible,
                  version: String? = nil,
@@ -24,12 +24,12 @@ struct MarketPriceResource {
 }
 
 // MARK: - Resource extension
-extension MarketPriceResource: Resource { }
+extension BlockchainResource: Resource { }
 
 // MARK: - Methods
-extension MarketPriceResource {
-    static func marketPrice(ofLast days: Int = 2,
-                            serviceInfo: APIServiceInfoProtocol = APIServiceInfo.default) -> MarketPriceResource {
+extension BlockchainResource {
+    static func marketPriceChartData(ofLast days: Int,
+                                     serviceInfo: APIServiceInfoProtocol = APIServiceInfo.default) -> BlockchainResource {
         let queryItems: [URLQueryItem] = [
             .resultFormat(value: serviceInfo.resultFormat),
             .timespan(days: days)
@@ -38,21 +38,21 @@ extension MarketPriceResource {
         let endpoint = Endpoint(path: "charts/market-price", queryItems: queryItems)
         let parser = ClosureResourceParser(Self.parser)
 
-        return MarketPriceResource(baseURL: serviceInfo.baseURL,
-                                   endpoint: endpoint,
-                                   parser: parser)
+        return BlockchainResource(baseURL: serviceInfo.baseURL,
+                                  endpoint: endpoint,
+                                  parser: parser)
     }
 }
 
-private extension MarketPriceResource {
-    typealias MarketPrice = ResponseModel.MarketPrice
+private extension BlockchainResource {
+    typealias ChartData = ResponseModel.ChartData
 
     // MARK: - Parser
-    static func parser(data: Data?) throws -> MarketPrice {
-        guard let data = data else { return MarketPrice(unit: "USD", period: "day", values: []) }
+    static func parser(data: Data?) throws -> ChartData {
+        guard let data = data else { return ChartData(unit: "USD", period: "day", values: []) }
 
         let decoder = JSONDecoder()
-        return try decoder.decode(MarketPrice.self, from: data)
+        return try decoder.decode(ChartData.self, from: data)
     }
 }
 

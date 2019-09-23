@@ -1,26 +1,26 @@
 import Foundation
 
 public extension ResponseModel {
-    struct MarketPrice {
+    struct ChartData {
         let unit: String
         let period: String
         let values: [Value]
     }
 }
 
-// MARK: - MarketPrice Decodable extension
-extension ResponseModel.MarketPrice: Decodable { }
+// MARK: - ChartData Decodable extension
+extension ResponseModel.ChartData: Decodable { }
 
-// MARK: - MarketPrice.Value
-public extension ResponseModel.MarketPrice {
+// MARK: - ChartData.Value
+public extension ResponseModel.ChartData {
     struct Value {
         let value: Decimal
         let date: Date
     }
 }
 
-// MARK: - MarketPrice.Value Decodable extension
-extension ResponseModel.MarketPrice.Value: Decodable {
+// MARK: - ChartData.Value Decodable extension
+extension ResponseModel.ChartData.Value: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -33,7 +33,7 @@ extension ResponseModel.MarketPrice.Value: Decodable {
     }
 }
 
-private extension ResponseModel.MarketPrice.Value {
+private extension ResponseModel.ChartData.Value {
     enum CodingKeys: String, CodingKey {
         case value = "y"
         case dateTimestamp = "x"
