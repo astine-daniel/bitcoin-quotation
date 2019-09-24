@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A45A6EFCDCEB1DE8AB85266 /* libPods-BitcoinQuotationUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2D4701F11B715C689F1E77E /* libPods-BitcoinQuotationUITests.a */; };
 		1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */; };
+		341E3216233A36930001AC3C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3215233A36930001AC3C /* HomeView.swift */; };
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
 		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
 		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		25DADC8298954868DF9BDEFB /* Pods-BitcoinQuotationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationUITests.release.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationUITests/Pods-BitcoinQuotationUITests.release.xcconfig"; sourceTree = "<group>"; };
 		27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-default-BitcoinQuotation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		341E3215233A36930001AC3C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		5381799296EE201BDC4F31E5 /* Pods-default-BitcoinQuotation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-default-BitcoinQuotation.release.xcconfig"; path = "Target Support Files/Pods-default-BitcoinQuotation/Pods-default-BitcoinQuotation.release.xcconfig"; sourceTree = "<group>"; };
 		88FF8B6FADA0B9FAF89B5C43 /* Pods-BitcoinQuotationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationTests.debug.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationTests/Pods-BitcoinQuotationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D4701F11B715C689F1E77E /* libPods-BitcoinQuotationUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinQuotationUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		341E3212233A36650001AC3C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				341E3213233A36700001AC3C /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		341E3213233A36700001AC3C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				341E3214233A367E0001AC3C /* Views */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		341E3214233A367E0001AC3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				341E3215233A36930001AC3C /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BF753C56997868942473B92C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +156,7 @@
 		D2C3746B2336C3F2000332BF /* BitcoinQuotation */ = {
 			isa = PBXGroup;
 			children = (
+				341E3212233A36650001AC3C /* Scenes */,
 				D2C3746C2336C3F2000332BF /* AppDelegate.swift */,
 				D2C3746E2336C3F2000332BF /* SceneDelegate.swift */,
 				D2C374702336C3F2000332BF /* ContentView.swift */,
@@ -408,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */,
+				341E3216233A36930001AC3C /* HomeView.swift in Sources */,
 				D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */,
 				D2C374712336C3F2000332BF /* ContentView.swift in Sources */,
 			);
