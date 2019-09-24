@@ -6,6 +6,7 @@ public enum NetworkingError: Error {
     case parseFailed(type: Any.Type)
     case statusCode(code: Int)
     case unknown
+    case noData
 }
 
 public extension NetworkingError {

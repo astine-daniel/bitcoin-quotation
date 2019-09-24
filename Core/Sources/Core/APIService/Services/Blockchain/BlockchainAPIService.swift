@@ -16,14 +16,16 @@ extension BlockchainAPIService: BlockchainAPIServiceProtocol {
     public func fetchMarketPriceChartData(ofLast days: Int) -> AnyPublisher<ResponseModel.ChartData, NetworkingError> {
         apiService.request(resource: .marketPriceChartData(ofLast: days))
     }
+
+    public func fetchStats() -> AnyPublisher<ResponseModel.Stats, NetworkingError> {
+        apiService.request(resource: .stats())
+    }
 }
 
 // MARK: - Private extension
 private extension APIServiceProtocol {
-    typealias ChartData = ResponseModel.ChartData
-
     @discardableResult
-    func request(resource: BlockchainResource) -> AnyPublisher<ChartData, NetworkingError> {
+    func request<T: Decodable>(resource: BlockchainResource) -> AnyPublisher<T, NetworkingError> {
         request(resource)
     }
 }

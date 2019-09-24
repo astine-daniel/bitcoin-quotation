@@ -28,6 +28,21 @@ extension BlockchainResource: Resource { }
 
 // MARK: - Methods
 extension BlockchainResource {
+    static func stats(serviceInfo: APIServiceInfoProtocol = APIServiceInfo.default) -> BlockchainResource {
+        let queryItems: [URLQueryItem] = [
+            .resultFormat(value: serviceInfo.resultFormat)
+        ]
+
+        let endpoint = Endpoint(path: "stats", queryItems: queryItems)
+        let parser = ClosureResourceParser<ResponseModel.Stats> {
+            try Self.parser(data: $0)
+        }
+
+        return BlockchainResource(baseURL: serviceInfo.baseURL,
+                                  endpoint: endpoint,
+                                  parser: parser)
+    }
+
     static func marketPriceChartData(ofLast days: Int,
                                      serviceInfo: APIServiceInfoProtocol = APIServiceInfo.default) -> BlockchainResource {
         let queryItems: [URLQueryItem] = [
@@ -36,7 +51,9 @@ extension BlockchainResource {
         ]
 
         let endpoint = Endpoint(path: "charts/market-price", queryItems: queryItems)
-        let parser = ClosureResourceParser(Self.parser)
+        let parser = ClosureResourceParser {
+            try Self.parser(data: $0, emptyValue: ResponseModel.ChartData(unit: "USD", period: "day", values: []))
+        }
 
         return BlockchainResource(baseURL: serviceInfo.baseURL,
                                   endpoint: endpoint,
@@ -45,14 +62,17 @@ extension BlockchainResource {
 }
 
 private extension BlockchainResource {
-    typealias ChartData = ResponseModel.ChartData
+    typealias Stats = ResponseModel.Stats
 
     // MARK: - Parser
-    static func parser(data: Data?) throws -> ChartData {
-        guard let data = data else { return ChartData(unit: "USD", period: "day", values: []) }
+    static func parser<T: Decodable>(data: Data?, emptyValue: @autoclosure () -> T? = nil) throws -> T {
+        guard let data = data else {
+            guard let emptyValue = emptyValue() else { throw NetworkingError.noData }
+            return emptyValue
+        }
 
         let decoder = JSONDecoder()
-        return try decoder.decode(ChartData.self, from: data)
+        return try decoder.decode(T.self, from: data)
     }
 }
 
