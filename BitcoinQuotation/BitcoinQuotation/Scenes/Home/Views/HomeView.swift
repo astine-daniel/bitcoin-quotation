@@ -31,7 +31,6 @@ struct HomeView: View {
                         }
                         .padding([.top, .leading, .trailing], 20)
                         .padding(.bottom, 80)
-                        
                     }
 
                     Spacer()

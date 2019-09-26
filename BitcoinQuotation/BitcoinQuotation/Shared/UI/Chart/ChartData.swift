@@ -1,12 +1,12 @@
 import Foundation
 
-final class ChartData<T>: ObservableObject {
+final class ChartData: ObservableObject {
     // MARK: - Properties
-    @Published var points = [T]()
-    @Published var currentPoint: T?
+    @Published var points = [Decimal]()
+    @Published var currentPoint: Decimal?
 
     // MARK: - Initialization
-    init(points: [T]) {
+    init(points: [Decimal]) {
         self.points = points
     }
 }

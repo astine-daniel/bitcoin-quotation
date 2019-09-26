@@ -11,6 +11,9 @@
 		1AF795E8BA88CC39E9DB2979 /* libPods-default-BitcoinQuotation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */; };
 		341E3216233A36930001AC3C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3215233A36930001AC3C /* HomeView.swift */; };
 		341E3227233BF1930001AC3C /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3226233BF1930001AC3C /* ChartData.swift */; };
+		341E322A233BF2280001AC3C /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3229233BF2280001AC3C /* LineChartView.swift */; };
+		341E322F233CF71A0001AC3C /* Path+QuadCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E322E233CF71A0001AC3C /* Path+QuadCurve.swift */; };
+		341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3231233CF9570001AC3C /* CGPoint+Extension.swift */; };
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
 		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
 		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
@@ -46,6 +49,9 @@
 		27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-default-BitcoinQuotation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		341E3215233A36930001AC3C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		341E3226233BF1930001AC3C /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		341E3229233BF2280001AC3C /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		341E322E233CF71A0001AC3C /* Path+QuadCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Path+QuadCurve.swift"; sourceTree = "<group>"; };
+		341E3231233CF9570001AC3C /* CGPoint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extension.swift"; sourceTree = "<group>"; };
 		5381799296EE201BDC4F31E5 /* Pods-default-BitcoinQuotation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-default-BitcoinQuotation.release.xcconfig"; path = "Target Support Files/Pods-default-BitcoinQuotation/Pods-default-BitcoinQuotation.release.xcconfig"; sourceTree = "<group>"; };
 		88FF8B6FADA0B9FAF89B5C43 /* Pods-BitcoinQuotationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationTests.debug.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationTests/Pods-BitcoinQuotationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2D4701F11B715C689F1E77E /* libPods-BitcoinQuotationUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinQuotationUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +132,7 @@
 		341E3223233BF1610001AC3C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				341E322C233CF6C00001AC3C /* Extensions */,
 				341E3224233BF1700001AC3C /* UI */,
 			);
 			path = Shared;
@@ -142,9 +149,43 @@
 		341E3225233BF17A0001AC3C /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				341E3228233BF2160001AC3C /* Views */,
 				341E3226233BF1930001AC3C /* ChartData.swift */,
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		341E3228233BF2160001AC3C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				341E3229233BF2280001AC3C /* LineChartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		341E322C233CF6C00001AC3C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				341E3230233CF9370001AC3C /* CoreGraphics */,
+				341E322D233CF6C60001AC3C /* SwiftUI */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		341E322D233CF6C60001AC3C /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				341E322E233CF71A0001AC3C /* Path+QuadCurve.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		341E3230233CF9370001AC3C /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				341E3231233CF9570001AC3C /* CGPoint+Extension.swift */,
+			);
+			path = CoreGraphics;
 			sourceTree = "<group>";
 		};
 		BF753C56997868942473B92C /* Frameworks */ = {
@@ -462,9 +503,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */,
+				341E322A233BF2280001AC3C /* LineChartView.swift in Sources */,
 				341E3227233BF1930001AC3C /* ChartData.swift in Sources */,
 				341E3216233A36930001AC3C /* HomeView.swift in Sources */,
+				341E322F233CF71A0001AC3C /* Path+QuadCurve.swift in Sources */,
 				D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */,
+				341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */,
 				D2C374712336C3F2000332BF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
