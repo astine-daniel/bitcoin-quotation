@@ -8,7 +8,6 @@ struct LineChartView: View {
     let frameSize = CGSize(width: 180, height: 120)
 
     var title: String
-    var legend: String?
 
     @State private var touchLocation: CGPoint = .zero
     @State private var showIndicatorDot: Bool = false
@@ -20,57 +19,30 @@ struct LineChartView: View {
     }
 
     // MARK: - Initialization
-    init(data: [Decimal], title: String, legend: String?) {
+    init(data: [Decimal], title: String) {
         self.data = ChartData(points: data)
         self.title = title
-        self.legend = legend
     }
 
     var body: some View {
-        ZStack(alignment: .center) {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
-                .frame(width: frameSize.width, height: 240.0, alignment: .center)
-                .shadow(radius: 8.0)
-
-            VStack(alignment: .leading) {
-                if self.showIndicatorDot == false {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text(title)
-                            .font(.title)
-                            .bold()
-                            .foregroundColor(.black)
-
-                        if legend != nil {
-                            Text(legend!)
-                                .font(.callout)
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    .padding()
-                }
-
-                Spacer()
-
-                GeometryReader {
-                    LineView(data: self.data,
-                             frame: .constant($0.frame(in: .local)),
-                             touchLocation: self.$touchLocation,
-                             showIndicator: self.$showIndicatorDot)
-                }
-                .frame(width: frameSize.width, height: frameSize.height)
-                .clipShape(RoundedRectangle(cornerRadius: 20.0))
-                .offset(x: 0.0, y: 0.0)
+        VStack(alignment: .leading, spacing: 20) {
+            if self.showIndicatorDot == false {
+                Text(title)
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(.black)
             }
-            .frame(width: 180, height: 240)
+
+            GeometryReader {
+                LineView(data: self.data,
+                         frame: .constant($0.frame(in: .local)),
+                         touchLocation: self.$touchLocation,
+                         showIndicator: self.$showIndicatorDot)
+            }
+            .frame(minHeight: 150)
+            .padding([.leading, .bottom, .trailing], 10)
         }
-        .gesture(DragGesture()
-        .onChanged {
-            self.touchLocation = $0.location
-            self.showIndicatorDot = true
-        }.onEnded { _ in
-            self.showIndicatorDot = false
-        })
+        .padding(20)
     }
 }
 
@@ -132,8 +104,7 @@ private struct LineView: View {
 struct LineChartViewPreviews: PreviewProvider {
     static var previews: some View {
         LineChartView(data: [2, 3, 10, 50, 34, 100, 8, 4, 1],
-                      title: "LineChart",
-                      legend: nil)
+                      title: "LineChart")
     }
 }
 #endif

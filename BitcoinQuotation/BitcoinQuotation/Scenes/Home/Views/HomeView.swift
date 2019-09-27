@@ -18,10 +18,10 @@ struct HomeView: View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ZStack(alignment: .topLeading) {
+                    VStack(alignment: .center) {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("Market price")
+                                Text("Last quotation")
                                     .font(.headline)
                                 Text("USD 10,000")
                                     .font(.largeTitle)
@@ -31,14 +31,28 @@ struct HomeView: View {
                         }
                         .padding([.top, .leading, .trailing], 20)
                         .padding(.bottom, 80)
+
+                        .background(Color(.systemGray6))
+
+                        VStack {
+                            LineChartView(data: [1, 2, 3, 10, 50, 34, 100, 8, 4, 1, 40, 45],
+                                          title: "Market Price (USD)")
+                                .background(Color(.white))
+                                .cornerRadius(20)
+                                .shadow(radius: 20)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding(.horizontal, 40)
+                        .offset(y: -60)
+                        .padding(.bottom, -60)
                     }
 
                     Spacer()
                 }
-                .background(Color(.systemGray6))
             }
             .navigationBarTitle("Bitcoin Quotation")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
