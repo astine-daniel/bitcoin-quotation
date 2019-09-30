@@ -1,15 +1,18 @@
 import SwiftUI
 
 struct LineChartView: View {
+    private class LineSize: ObservableObject {
+        var value: CGSize = .zero
+    }
+
     // MARK: - Properties
     @ObservedObject var data: ChartData
 
-    let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
-    let frameSize = CGSize(width: 180, height: 120)
-
-    var title: String
+    private let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+    private var didSelectDataAtIndex: ((Int) -> Void)?
 
     @State private var touchLocation: CGPoint = .zero
+    private var lineSize: LineSize = LineSize()
     @State private var showIndicatorDot: Bool = false
     @State private var currentValue: Decimal? {
         didSet {
@@ -19,30 +22,47 @@ struct LineChartView: View {
     }
 
     // MARK: - Initialization
-    init(data: [Decimal], title: String) {
+    init(data: [Decimal], didSelectDataAtIndex: ((Int) -> Void)? = nil) {
         self.data = ChartData(points: data)
-        self.title = title
+        self.didSelectDataAtIndex = didSelectDataAtIndex
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            if self.showIndicatorDot == false {
-                Text(title)
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.black)
-            }
+            GeometryReader { (geometry: GeometryProxy) -> LineView in
+                let frame = geometry.frame(in: .local)
+                self.lineSize.value = frame.size
 
-            GeometryReader {
-                LineView(data: self.data,
-                         frame: .constant($0.frame(in: .local)),
-                         touchLocation: self.$touchLocation,
-                         showIndicator: self.$showIndicatorDot)
+                return LineView(data: self.data,
+                                frame: .constant(frame),
+                                touchLocation: self.$touchLocation,
+                                showIndicator: self.$showIndicatorDot)
             }
             .frame(minHeight: 150)
             .padding([.leading, .bottom, .trailing], 10)
         }
         .padding(20)
+        .gesture(DragGesture()
+            .onChanged {
+                self.touchLocation = $0.location
+                self.showIndicatorDot = true
+
+                self.udpateCurrentValue(to: $0.location)
+            }
+        )
+    }
+}
+
+private extension LineChartView {
+    func udpateCurrentValue(to: CGPoint) {
+        let size = lineSize.value
+        let stepWidth = size.width / CGFloat(data.points.count - 1)
+
+        let index = Int(round(to.x) / stepWidth)
+        guard index >= 0 && index < data.points.count else { return }
+
+        currentValue = self.data.points[index]
+        print("Value: \(currentValue ?? 0) - Index: \(index)")
     }
 }
 
@@ -103,8 +123,7 @@ private struct LineView: View {
 #if DEBUG
 struct LineChartViewPreviews: PreviewProvider {
     static var previews: some View {
-        LineChartView(data: [2, 3, 10, 50, 34, 100, 8, 4, 1],
-                      title: "LineChart")
+        LineChartView(data: [2, 3, 10, 50, 34, 100, 8, 4, 1])
     }
 }
 #endif

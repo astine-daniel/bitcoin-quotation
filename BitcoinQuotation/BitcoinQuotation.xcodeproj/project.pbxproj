@@ -16,6 +16,7 @@
 		341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E3231233CF9570001AC3C /* CGPoint+Extension.swift */; };
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
 		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
+		D23D834C233DC44F0081A481 /* MarketPriceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */; };
 		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
 		D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746C2336C3F2000332BF /* AppDelegate.swift */; };
 		D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746E2336C3F2000332BF /* SceneDelegate.swift */; };
@@ -58,6 +59,7 @@
 		A45FA488F1C87DB156EB0C08 /* Pods-BitcoinQuotationUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationUITests.debug.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationUITests/Pods-BitcoinQuotationUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF2613B5ED230B446060D352 /* Pods-BitcoinQuotationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationTests.release.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationTests/Pods-BitcoinQuotationTests.release.xcconfig"; sourceTree = "<group>"; };
 		C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinQuotationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceChartView.swift; sourceTree = "<group>"; };
 		D2C374692336C3F2000332BF /* BitcoinQuotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinQuotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C3746C2336C3F2000332BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C3746E2336C3F2000332BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				341E3213233A36700001AC3C /* Home */,
+				D23D8349233DC41B0081A481 /* MarketChart */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -196,6 +199,22 @@
 				27F906AB9CC6065FBC6D4C85 /* libPods-default-BitcoinQuotation.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D23D8349233DC41B0081A481 /* MarketChart */ = {
+			isa = PBXGroup;
+			children = (
+				D23D834A233DC42B0081A481 /* Views */,
+			);
+			path = MarketChart;
+			sourceTree = "<group>";
+		};
+		D23D834A233DC42B0081A481 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D2C374602336C3F2000332BF = {
@@ -509,6 +528,7 @@
 				341E322F233CF71A0001AC3C /* Path+QuadCurve.swift in Sources */,
 				D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */,
 				341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */,
+				D23D834C233DC44F0081A481 /* MarketPriceChartView.swift in Sources */,
 				D2C374712336C3F2000332BF /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
