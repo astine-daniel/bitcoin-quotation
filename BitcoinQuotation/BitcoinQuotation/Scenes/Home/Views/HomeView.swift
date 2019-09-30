@@ -26,13 +26,23 @@ struct HomeView: View {
                                 Text("Market price")
                                     .font(.callout)
                                     .padding(20)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color(.label))
 
                                 LineChartView(data: [1, 2, 3, 10, 50, 34, 100, 8, 4, 1, 40, 45])
                             }
-                            .background(Color(.white))
+                            .background(Color(UIColor(dynamicProvider: {
+                                switch $0.userInterfaceStyle {
+                                case .dark: return .black
+                                default: return .white
+                                }
+                            })))
                             .cornerRadius(20)
-                            .shadow(radius: 20)
+                            .shadow(color: Color(UIColor(dynamicProvider: {
+                                switch $0.userInterfaceStyle {
+                                case .dark: return UIColor.white.withAlphaComponent(0.33)
+                                default: return UIColor.black.withAlphaComponent(0.33)
+                                }
+                            })), radius: 20)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding(.horizontal, 40)

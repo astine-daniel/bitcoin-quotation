@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct LineChartView: View {
-    private class LineSize: ObservableObject {
+    private class LineSize {
         var value: CGSize = .zero
     }
 
@@ -12,7 +12,7 @@ struct LineChartView: View {
     private var didSelectDataAtIndex: ((Int) -> Void)?
 
     @State private var touchLocation: CGPoint = .zero
-    private var lineSize: LineSize = LineSize()
+    private let lineSize = LineSize()
     @State private var showIndicatorDot: Bool = false
     @State private var currentValue: Decimal? {
         didSet {
@@ -42,12 +42,21 @@ struct LineChartView: View {
             .padding([.leading, .bottom, .trailing], 10)
         }
         .padding(20)
+        .background(Color(UIColor(dynamicProvider: {
+            switch $0.userInterfaceStyle {
+            case .dark: return .black
+            default: return .white
+            }
+        })))
         .gesture(DragGesture()
             .onChanged {
                 self.touchLocation = $0.location
                 self.showIndicatorDot = true
 
                 self.udpateCurrentValue(to: $0.location)
+            }
+            .onEnded { _ in
+                self.showIndicatorDot = false
             }
         )
     }
@@ -61,8 +70,7 @@ private extension LineChartView {
         let index = Int(round(to.x) / stepWidth)
         guard index >= 0 && index < data.points.count else { return }
 
-        currentValue = self.data.points[index]
-        print("Value: \(currentValue ?? 0) - Index: \(index)")
+        didSelectDataAtIndex?(index)
     }
 }
 
@@ -106,16 +114,43 @@ private struct LineView: View {
                     .animation(.easeIn(duration: 1.6))
             }
 
-            path
-                .trim(from: 0.0, to: showFull ? 1.0 : 0.0)
-                .stroke(Color(.systemBlue))
+            path.stroke(Color(.systemBlue))
                 .rotationEffect(.degrees(180.0), anchor: .center)
                 .rotation3DEffect(.degrees(180.0), axis: (x: 0.0, y: 1.0, z: 0.0))
                 .animation(.easeOut(duration: 1.2))
                 .onAppear {
                     self.showFull.toggle()
                 }
+
+            if self.showIndicator {
+                IndicatorPoint()
+                    .position(closestPointOnPath(to: touchLocation))
+                    .rotationEffect(.degrees(180.0), anchor: .center)
+                    .rotation3DEffect(.degrees(180.0), axis: (x: 0, y: 1, z: 0))
+            }
         }
+    }
+}
+
+private extension LineView {
+    func closestPointOnPath(to: CGPoint) -> CGPoint {
+        let percentage = min(max(to.x, 0.0) / frame.width, 1)
+        let closest = path.percentPoint(percentage)
+
+        return closest
+    }
+}
+
+private struct IndicatorPoint: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(Color(.systemPink))
+            Circle()
+                .stroke(Color.white, style: StrokeStyle(lineWidth: 4.0))
+        }
+        .frame(width: 14.0, height: 14.0)
+        .shadow(color: Color(.systemGray4), radius: 5.0, x: 0.0, y: 2.0)
     }
 }
 
