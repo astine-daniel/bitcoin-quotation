@@ -1,17 +1,17 @@
 import Combine
 
-final class BlockchainRepository {
+public final class BlockchainRepository {
     // MARK: - Properties
     private let service: BlockchainAPIServiceProtocol
 
     // MARK: - Initialization
-    init(service: BlockchainAPIServiceProtocol = BlockchainAPIService()) {
+    public init(service: BlockchainAPIServiceProtocol = BlockchainAPIService()) {
         self.service = service
     }
 }
 
 extension BlockchainRepository: BlockchainRepositoryProtocol {
-    func fetchStats() -> AnyPublisher<Model.Stats, Error> {
+    public func fetchStats() -> AnyPublisher<Model.Stats, Error> {
         service.fetchStats().map {
             Model.Stats(date: $0.date, marketPriceInUSD: $0.marketPriceInUSD)
         }
@@ -19,7 +19,7 @@ extension BlockchainRepository: BlockchainRepositoryProtocol {
         .eraseToAnyPublisher()
     }
 
-    func fetchMarketPriceChartData(ofLast days: Int) -> AnyPublisher<Model.ChartData, Error> {
+    public func fetchMarketPriceChartData(ofLast days: Int) -> AnyPublisher<Model.ChartData, Error> {
         service.fetchMarketPriceChartData(ofLast: days).map {
             Model.ChartData(
                 unit: $0.unit,

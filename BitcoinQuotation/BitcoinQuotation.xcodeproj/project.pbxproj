@@ -17,6 +17,8 @@
 		9C4D93301E32BBF821EB91BA /* libPods-BitcoinQuotationTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */; };
 		D223FA982337155F001C225A /* Common in Frameworks */ = {isa = PBXBuildFile; productRef = D223FA972337155F001C225A /* Common */; };
 		D23D834C233DC44F0081A481 /* MarketPriceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */; };
+		D23D83572342C6940081A481 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D83562342C6940081A481 /* StatsViewModel.swift */; };
+		D23D835D2342F5480081A481 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D835C2342F5480081A481 /* ActivityIndicator.swift */; };
 		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
 		D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746C2336C3F2000332BF /* AppDelegate.swift */; };
 		D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746E2336C3F2000332BF /* SceneDelegate.swift */; };
@@ -60,6 +62,8 @@
 		AF2613B5ED230B446060D352 /* Pods-BitcoinQuotationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinQuotationTests.release.xcconfig"; path = "Target Support Files/Pods-BitcoinQuotationTests/Pods-BitcoinQuotationTests.release.xcconfig"; sourceTree = "<group>"; };
 		C101B210525020B4E876CD7B /* libPods-BitcoinQuotationTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinQuotationTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceChartView.swift; sourceTree = "<group>"; };
+		D23D83562342C6940081A481 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
+		D23D835C2342F5480081A481 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		D2C374692336C3F2000332BF /* BitcoinQuotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinQuotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C3746C2336C3F2000332BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C3746E2336C3F2000332BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +123,7 @@
 		341E3213233A36700001AC3C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D23D83552342C46C0081A481 /* ViewModels */,
 				341E3214233A367E0001AC3C /* Views */,
 			);
 			path = Home;
@@ -144,6 +149,7 @@
 		341E3224233BF1700001AC3C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D23D835B2342F5300081A481 /* ActivityIndicator */,
 				341E3225233BF17A0001AC3C /* Chart */,
 			);
 			path = UI;
@@ -215,6 +221,22 @@
 				D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D23D83552342C46C0081A481 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D23D83562342C6940081A481 /* StatsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D23D835B2342F5300081A481 /* ActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				D23D835C2342F5480081A481 /* ActivityIndicator.swift */,
+			);
+			path = ActivityIndicator;
 			sourceTree = "<group>";
 		};
 		D2C374602336C3F2000332BF = {
@@ -521,10 +543,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D23D83572342C6940081A481 /* StatsViewModel.swift in Sources */,
 				D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */,
 				341E322A233BF2280001AC3C /* LineChartView.swift in Sources */,
 				341E3227233BF1930001AC3C /* ChartData.swift in Sources */,
 				341E3216233A36930001AC3C /* HomeView.swift in Sources */,
+				D23D835D2342F5480081A481 /* ActivityIndicator.swift in Sources */,
 				341E322F233CF71A0001AC3C /* Path+QuadCurve.swift in Sources */,
 				D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */,
 				341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */,

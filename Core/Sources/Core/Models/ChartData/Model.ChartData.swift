@@ -2,16 +2,18 @@ import Foundation
 
 public extension Model {
     struct ChartData {
-        let unit: String
-        let period: String
-        let values: [Value]
+        // MARK: - Properties
+        public let unit: String
+        public let period: String
+        public let values: [Value]
     }
 }
 
 // MARK: - ChartData.Value
 public extension Model.ChartData {
     struct Value {
-        let value: Decimal
-        let date: Date
+        // MARK: - Properties
+        public let value: Decimal
+        public let date: Date
     }
 }

@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel: StatsViewModel
+
+    init() {
+        self.viewModel = StatsViewModel()
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -9,8 +15,13 @@ struct HomeView: View {
                         VStack(alignment: .leading) {
                             Text("Last quotation")
                                 .font(.headline)
-                            Text("USD 10,000")
-                                .font(.title)
+
+                            if viewModel.isLoading == false && viewModel.stats != nil {
+                                Text("USD \(formated(value: viewModel.stats!.marketPriceInUSD))")
+                                    .font(.title)
+                            } else {
+                                ActivityIndicator(style: .medium)
+                            }
                         }
 
                         Spacer()
@@ -55,6 +66,21 @@ struct HomeView: View {
             }
         }
         .navigationBarTitle("Bitcoin Quotation")
+        .onAppear {
+            self.viewModel.loadStats()
+        }
+    }
+}
+
+private extension HomeView {
+    func formated(value: Decimal) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = ""
+
+        return numberFormatter
+            .string(from: NSDecimalNumber(decimal: value)) ?? "-"
     }
 }
 
