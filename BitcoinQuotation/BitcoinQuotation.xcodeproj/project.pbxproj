@@ -19,6 +19,7 @@
 		D23D834C233DC44F0081A481 /* MarketPriceChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */; };
 		D23D83572342C6940081A481 /* StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D83562342C6940081A481 /* StatsViewModel.swift */; };
 		D23D835D2342F5480081A481 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D835C2342F5480081A481 /* ActivityIndicator.swift */; };
+		D23D835F2342F82A0081A481 /* ChartDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23D835E2342F82A0081A481 /* ChartDataViewModel.swift */; };
 		D2AE2E6D233846440016AFD8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = D2AE2E6C233846440016AFD8 /* Core */; };
 		D2C3746D2336C3F2000332BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746C2336C3F2000332BF /* AppDelegate.swift */; };
 		D2C3746F2336C3F2000332BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C3746E2336C3F2000332BF /* SceneDelegate.swift */; };
@@ -64,6 +65,7 @@
 		D23D834B233DC44F0081A481 /* MarketPriceChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketPriceChartView.swift; sourceTree = "<group>"; };
 		D23D83562342C6940081A481 /* StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewModel.swift; sourceTree = "<group>"; };
 		D23D835C2342F5480081A481 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		D23D835E2342F82A0081A481 /* ChartDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartDataViewModel.swift; sourceTree = "<group>"; };
 		D2C374692336C3F2000332BF /* BitcoinQuotation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinQuotation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2C3746C2336C3F2000332BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2C3746E2336C3F2000332BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		D23D83552342C46C0081A481 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				D23D835E2342F82A0081A481 /* ChartDataViewModel.swift */,
 				D23D83562342C6940081A481 /* StatsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -554,6 +557,7 @@
 				341E3232233CF9570001AC3C /* CGPoint+Extension.swift in Sources */,
 				D23D834C233DC44F0081A481 /* MarketPriceChartView.swift in Sources */,
 				D2C374712336C3F2000332BF /* ContentView.swift in Sources */,
+				D23D835F2342F82A0081A481 /* ChartDataViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

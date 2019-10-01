@@ -29,17 +29,19 @@ struct LineChartView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
-            GeometryReader { (geometry: GeometryProxy) -> LineView in
-                let frame = geometry.frame(in: .local)
-                self.lineSize.value = frame.size
+            if data.points.isEmpty == false {
+                GeometryReader { (geometry: GeometryProxy) -> LineView in
+                    let frame = geometry.frame(in: .local)
+                    self.lineSize.value = frame.size
 
-                return LineView(data: self.data,
-                                frame: .constant(frame),
-                                touchLocation: self.$touchLocation,
-                                showIndicator: self.$showIndicatorDot)
+                    return LineView(data: self.data,
+                                    frame: .constant(frame),
+                                    touchLocation: self.$touchLocation,
+                                    showIndicator: self.$showIndicatorDot)
+                }
+                .frame(minHeight: 150)
+                .padding([.leading, .bottom, .trailing], 10)
             }
-            .frame(minHeight: 150)
-            .padding([.leading, .bottom, .trailing], 10)
         }
         .padding(20)
         .background(Color(UIColor(dynamicProvider: {

@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct MarketPriceChartView: View {
+    @EnvironmentObject private var chartDataViewModel: ChartDataViewModel
+    @State private var currentIndex: Int?
+
     var body: some View {
         VStack(alignment: .center, spacing: 10.0) {
             Text("Market Price (USD)")
@@ -11,7 +14,7 @@ struct MarketPriceChartView: View {
                 .multilineTextAlignment(.center)
                 .font(.footnote)
 
-            Text("Drag over the line to se the values")
+            Text(currentValueText(from: currentIndex))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .font(.title)
@@ -19,7 +22,9 @@ struct MarketPriceChartView: View {
                 .padding(.bottom, 15.0)
                 .padding(.horizontal, 10.0)
 
-            LineChartView(data: [1, 2, 3, 10, 50, 34, 100, 8, 4, 1, 40, 45])
+            LineChartView(data: chartDataViewModel.values.map { $0.value }) {
+                self.currentIndex = $0
+            }
 
             Spacer()
         }
@@ -27,6 +32,38 @@ struct MarketPriceChartView: View {
         .padding(.horizontal, 10)
         .padding(.top, 40.0)
         .navigationBarTitle("Market Price", displayMode: .inline)
+    }
+}
+
+private extension MarketPriceChartView {
+    func currentValueText(from index: Int?) -> String {
+        guard let index = index else {
+            return "Drag over the line to se the values"
+        }
+
+        let value = chartDataViewModel.values[index]
+
+        let formatedValue = formated(value: value.value)
+        let formatedDate = formated(value: value.date)
+
+        return "\(formatedDate)\nUSD \(formatedValue)"
+    }
+
+    func formated(value: Decimal) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.numberStyle = .currency
+        numberFormatter.currencySymbol = ""
+
+        return numberFormatter
+            .string(from: NSDecimalNumber(decimal: value)) ?? "-"
+    }
+
+    func formated(value: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        return dateFormatter.string(from: value)
     }
 }
 

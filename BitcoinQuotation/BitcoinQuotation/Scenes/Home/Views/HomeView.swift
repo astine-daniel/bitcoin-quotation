@@ -1,10 +1,12 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var viewModel: StatsViewModel
+    @ObservedObject private var statsViewModel: StatsViewModel
+    @ObservedObject private var chartDataViewModel: ChartDataViewModel
 
     init() {
-        self.viewModel = StatsViewModel()
+        self.statsViewModel = StatsViewModel()
+        self.chartDataViewModel = ChartDataViewModel()
     }
 
     var body: some View {
@@ -16,8 +18,8 @@ struct HomeView: View {
                             Text("Last quotation")
                                 .font(.headline)
 
-                            if viewModel.isLoading == false && viewModel.stats != nil {
-                                Text("USD \(formated(value: viewModel.stats!.marketPriceInUSD))")
+                            if statsViewModel.isLoading == false && statsViewModel.stats != nil {
+                                Text("USD \(formated(value: statsViewModel.stats!.marketPriceInUSD))")
                                     .font(.title)
                             } else {
                                 ActivityIndicator(style: .medium)
@@ -31,15 +33,19 @@ struct HomeView: View {
                     .padding(.bottom, 80)
                     .background(Color(.systemGray6))
 
-                    NavigationLink(destination: MarketPriceChartView()) {
+                    NavigationLink(destination: MarketPriceChartView().environmentObject(self.chartDataViewModel)) {
                         VStack {
-                            VStack(alignment: .leading, spacing: 10.0) {
-                                Text("Market price")
-                                    .font(.callout)
-                                    .padding(20)
-                                    .foregroundColor(Color(.label))
+                            VStack(alignment: chartDataViewModel.isLoading ? .center : .leading, spacing: 10.0) {
+                                if chartDataViewModel.isLoading {
+                                    ActivityIndicator(style: .medium)
+                                } else {
+                                    Text("Market price")
+                                        .font(.callout)
+                                        .padding(20)
+                                        .foregroundColor(Color(.label))
 
-                                LineChartView(data: [1, 2, 3, 10, 50, 34, 100, 8, 4, 1, 40, 45])
+                                    LineChartView(data: chartDataViewModel.values.map { $0.value })
+                                }
                             }
                             .background(Color(UIColor(dynamicProvider: {
                                 switch $0.userInterfaceStyle {
@@ -67,7 +73,8 @@ struct HomeView: View {
         }
         .navigationBarTitle("Bitcoin Quotation")
         .onAppear {
-            self.viewModel.loadStats()
+            self.statsViewModel.loadStats()
+            self.chartDataViewModel.loadData()
         }
     }
 }
